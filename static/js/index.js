@@ -62,3 +62,17 @@ document.querySelector('#submitEventButton').addEventListener('click', (ev) => {
     )
     refreshEvents()
 })
+
+function searchEvent(location, datetime) {
+    renderEvents(getVEvents().filter(vEvent => {
+        return (location === '' || vEvent.location === location) && (datetime === '' || datetime === vEvent.datetime.split('T')[0])
+    }))
+}
+
+document.querySelector('#searchForm').addEventListener('submit', ev => {
+    ev.preventDefault()
+    searchEvent(
+        document.querySelector('#searchFormText').value,
+        document.querySelector('#searchFormDateStart').value
+    )
+})
