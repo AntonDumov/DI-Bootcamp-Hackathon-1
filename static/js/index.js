@@ -3,14 +3,16 @@ function getVEvents() {
 }
 
 function addVEvent(shortDescription, longDescription, datetime, location, imageFile) {
-    const imageBase64 =
+    getBase64(imageFile).then(imageBase64 => {
         volunteerEvents.push({
             shortDescription: shortDescription,
             longDescription: longDescription,
             datetime: datetime,
             location: location,
-            image: `data:image/png;base64, ${getBase64(imageFile)}`
+            image: imageBase64
         })
+        refreshEvents()
+    })
 }
 
 function refreshEvents() {
@@ -36,13 +38,27 @@ function renderEvents(vEvents) {
 function getBase64(file) {
     return new Promise(resolve => {
         const reader = new FileReader()
-        reader.readAsDataURL()
+        reader.readAsDataURL(file)
         reader.onload = () => {
-            resolve(reader.result)
+            return {
+                data: resolve(reader.result),
+                format: file.name.split('.').pop()
+            }
         }
     })
 }
 
 window.addEventListener("load", () => {
     renderEvents(getVEvents())
+})
+
+document.querySelector('#submitEventButton').addEventListener('click', (ev) => {
+    addVEvent(
+        document.querySelector('#eventAddFormShortDescription').value,
+        document.querySelector('#eventAddFormLongDescription').value,
+        document.querySelector('#eventAddFormDatetime').value,
+        document.querySelector('#eventAddFormLocation').value,
+        document.querySelector('#eventAddFormImage').files[0],
+    )
+    refreshEvents()
 })

@@ -63,12 +63,33 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form class="row"></form>
+                        <form class="row">
+                            <div class="col-12 mb-2">
+                                <label  for="eventAddFormShortDescription" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="eventAddFormShortDescription">
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label for="eventAddFormImage" class="form-label">Image</label>
+                                <input type="file" class="form-control" id="eventAddFormImage">
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label class="form-label" for="eventAddFormLongDescription">Description</label>
+                                <textarea class="form-control" id="eventAddFormLongDescription" rows="5"></textarea>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label class="form-label" for="eventAddFormDatetime">Date</label>
+                                <input class="form-control" type="date" id="eventAddFormDatetime">
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label class="form-label" for="eventAddFormDatetime">Location</label>
+                                <input class="form-control" type="text" id="eventAddFormLocation">
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="submitEventButton">Create Event</button>
+                    <button type="button" class="btn btn-primary" id="submitEventButton" data-bs-dismiss="modal">Create Event</button>
                 </div>
             </div>
         </div>
